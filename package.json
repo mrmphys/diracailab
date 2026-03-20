@@ -1,0 +1,11 @@
+{
+  "name": "dirac-ai-lab",
+  "version": "1.0.0",
+  "description": "Dirac AI Lab — AI Built for the Real World",
+  "scripts": {
+    "start": "serve . -p ${PORT:-3000} -s"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}
