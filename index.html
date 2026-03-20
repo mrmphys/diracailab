@@ -186,14 +186,17 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
   .testi-item { grid-template-columns: 1fr; }
   .t-co { text-align: left; }
   .fg-row { grid-template-columns: 1fr; }
-  .ft { grid-template-columns: 1fr 1fr; }
+  .ft { grid-template-columns: 1fr 1fr; gap: 32px; }
   .fb { flex-direction: column; align-items: flex-start; }
+  /* hide extra footer nav cols on mobile, show only brand + services */
+  .fc:nth-child(3), .fc:nth-child(4) { display: none; }
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }
   h1 { font-size: 2.2rem; }
   .proc-item { grid-template-columns: 1fr; gap: 16px; }
   .ft { grid-template-columns: 1fr; }
+  .fc:nth-child(3), .fc:nth-child(4) { display: none; }
 }
 </style>
 </head>
