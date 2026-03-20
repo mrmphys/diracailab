@@ -6,775 +6,510 @@
   <title>Dirac AI Lab — AI Built for the Real World</title>
   <meta name="description" content="Dirac AI Lab delivers production-grade AI: Voice Agents, HIPAA-compliant healthcare AI, recommendation systems, MLOps, and enterprise LLM integration." />
   <link rel="canonical" href="https://diracailab.com" />
-  <meta property="og:title" content="Dirac AI Lab — AI Built for the Real World" />
-  <meta property="og:description" content="Production-grade AI for healthcare, e-commerce, and enterprise." />
+  <meta property="og:title" content="Dirac AI Lab" />
+  <meta property="og:description" content="AI Built for the Real World" />
   <meta property="og:url" content="https://diracailab.com" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 <style>
-/* ── Reset ──────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:      #07070f;
-  --bg2:     #0c0c18;
-  --bg3:     #111120;
-  --blue:    #00c8ff;
-  --blue-dim: rgba(0,200,255,0.12);
-  --white:   #ffffff;
-  --off:     #c8ccd8;
-  --muted:   #6b7280;
-  --border:  rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --radius:  4px;
-  --radius2: 12px;
+  --bg: #080810;
+  --white: #ffffff;
+  --muted: #555566;
+  --border: rgba(255,255,255,0.08);
+  --blue: #00c8ff;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 ::selection { background: var(--blue); color: #000; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
-/* ── Util ───────────────────────────────────────────────────────── */
-.container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
-.blue { color: var(--blue); }
-.muted { color: var(--muted); }
-.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.fade-in.visible { opacity: 1; transform: none; }
-.d1 { transition-delay: 0.05s; } .d2 { transition-delay: 0.12s; }
-.d3 { transition-delay: 0.19s; } .d4 { transition-delay: 0.26s; }
-.d5 { transition-delay: 0.33s; } .d6 { transition-delay: 0.40s; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
 
-/* ── Canvas ─────────────────────────────────────────────────────── */
-#c { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.3; }
+/* fade */
+.f { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.f.v { opacity: 1; transform: none; }
+.f.d1 { transition-delay: .08s; } .f.d2 { transition-delay: .16s; }
+.f.d3 { transition-delay: .24s; } .f.d4 { transition-delay: .32s; }
+.f.d5 { transition-delay: .40s; } .f.d6 { transition-delay: .48s; }
 
-/* ── Nav ────────────────────────────────────────────────────────── */
+/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 22px 0; transition: all 0.3s ease;
+  padding: 24px 0; transition: all .25s;
 }
-nav.s {
-  background: rgba(7,7,15,0.92); backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border); padding: 14px 0;
-}
-.nav-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.05rem; color: var(--white); letter-spacing: -0.02em; }
-.logo-mark {
-  width: 30px; height: 30px; background: var(--blue); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem; font-weight: 900; color: #000; flex-shrink: 0;
-}
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--white); }
-.nav-btn { padding: 9px 22px; background: var(--white); color: #000; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; font-family: inherit; }
-.nav-btn:hover { background: var(--blue); }
-.ham { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
-.ham span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: 0.3s; }
-.mob-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 200; flex-direction: column; padding: 32px; }
-.mob-menu.open { display: flex; }
-.mob-close { align-self: flex-end; background: none; border: 1px solid var(--border); color: var(--white); padding: 8px 16px; border-radius: 50px; cursor: pointer; font-family: inherit; margin-bottom: 40px; }
-.mob-menu a { font-size: 2rem; font-weight: 800; color: var(--white); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); letter-spacing: -0.03em; }
-.mob-menu a:hover { color: var(--blue); }
+nav.s { background: rgba(8,8,16,.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 16px 0; }
+.ni { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-weight: 900; font-size: 1rem; letter-spacing: -.02em; display: flex; align-items: center; gap: 8px; }
+.lm { width: 28px; height: 28px; background: var(--blue); border-radius: 6px; display: grid; place-items: center; font-size: .8rem; font-weight: 900; color: #000; }
+.nl { display: flex; gap: 32px; list-style: none; }
+.nl a { font-size: .85rem; color: var(--muted); font-weight: 500; transition: color .2s; }
+.nl a:hover { color: var(--white); }
+.nb { padding: 9px 22px; background: var(--white); color: #000; border-radius: 50px; font-size: .85rem; font-weight: 700; transition: background .2s; }
+.nb:hover { background: var(--blue); }
+.hb { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hb span { display: block; width: 22px; height: 1.5px; background: var(--white); }
+.mm { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 200; flex-direction: column; padding: 40px 32px; gap: 4px; }
+.mm.o { display: flex; }
+.mc { align-self: flex-end; background: none; border: 1px solid var(--border); color: var(--white); padding: 7px 16px; border-radius: 50px; cursor: pointer; font-family: inherit; margin-bottom: 32px; font-size: .85rem; }
+.mm a { font-size: 2.2rem; font-weight: 900; letter-spacing: -.04em; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.mm a:hover { color: var(--blue); }
 
-/* ── Hero ───────────────────────────────────────────────────────── */
-#hero {
-  min-height: 100vh; display: flex; align-items: center;
-  position: relative; z-index: 1; padding: 140px 0 100px;
-}
-.hero-layout { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--blue); margin-bottom: 28px;
-}
-.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--blue); }
-h1 {
-  font-size: clamp(3rem, 6.5vw, 5.2rem); font-weight: 900;
-  line-height: 1.04; letter-spacing: -0.04em;
-  color: var(--white); margin-bottom: 28px;
-}
-h1 em { font-style: normal; color: var(--blue); }
-.hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 460px; margin-bottom: 44px; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
-.btn-white { padding: 13px 28px; background: var(--white); color: #000; border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; display: inline-block; }
-.btn-white:hover { background: var(--blue); }
-.btn-ghost { padding: 13px 28px; background: transparent; color: var(--white); border: 1px solid var(--border2); border-radius: 50px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; display: inline-block; }
-.btn-ghost:hover { border-color: var(--white); }
-.hero-stats { display: flex; gap: 48px; padding-top: 40px; border-top: 1px solid var(--border); }
-.stat-val { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.04em; color: var(--white); }
-.stat-lbl { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 2px; }
+/* ── HERO ── */
+#hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 0 100px; }
+.hero-tag { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; display: block; }
+h1 { font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 900; letter-spacing: -.05em; line-height: 1.02; margin-bottom: 32px; }
+h1 .hl { color: var(--blue); }
+.hero-p { font-size: 1.1rem; color: var(--muted); line-height: 1.8; max-width: 520px; margin-bottom: 48px; font-weight: 400; }
+.btn-main { display: inline-block; padding: 14px 32px; background: var(--white); color: #000; border-radius: 50px; font-weight: 700; font-size: .95rem; transition: background .2s; }
+.btn-main:hover { background: var(--blue); }
+.btn-sec { display: inline-block; padding: 14px 32px; color: var(--muted); font-size: .95rem; font-weight: 500; margin-left: 8px; transition: color .2s; }
+.btn-sec:hover { color: var(--white); }
+.hero-nums { display: flex; gap: 56px; padding-top: 64px; border-top: 1px solid var(--border); margin-top: 64px; }
+.hn-val { font-size: 2rem; font-weight: 900; letter-spacing: -.04em; }
+.hn-lbl { font-size: .78rem; color: var(--muted); margin-top: 4px; }
 
-/* Hero panel */
-.hero-panel {
-  position: relative; background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 16px; padding: 0; overflow: hidden;
-}
-.panel-header {
-  padding: 18px 24px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px;
-}
-.dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.12); }
-.dot.live { background: var(--blue); box-shadow: 0 0 8px var(--blue); animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-.panel-title { font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-left: 8px; }
-.panel-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-.metric-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 16px; background: var(--bg3); border-radius: 10px;
-  border: 1px solid var(--border);
-}
-.metric-name { font-size: 0.82rem; font-weight: 600; color: var(--off); }
-.metric-val { font-size: 0.82rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
-.metric-val.up { color: #22d3a5; }
-.metric-val.blue { color: var(--blue); font-family: inherit; }
-.metric-badge { font-size: 0.7rem; padding: 3px 10px; border-radius: 50px; font-weight: 600; }
-.badge-green { background: rgba(34,211,165,0.12); color: #22d3a5; border: 1px solid rgba(34,211,165,0.2); }
-.badge-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(0,200,255,0.2); }
-.panel-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-.pf-dot { width: 7px; height: 7px; border-radius: 50%; background: #22d3a5; box-shadow: 0 0 6px #22d3a5; }
-.pf-text { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-/* ── Ticker ─────────────────────────────────────────────────────── */
-.ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; position: relative; z-index: 1; }
-.ticker { display: flex; gap: 64px; animation: tick 28s linear infinite; white-space: nowrap; }
-.ticker-item { display: flex; align-items: center; gap: 12px; flex-shrink: 0; font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
-.ticker-item::before { content: '▪'; color: var(--blue); font-size: 0.6rem; }
-@keyframes tick { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-
-/* ── Section base ───────────────────────────────────────────────── */
-section { position: relative; z-index: 1; }
-.sec-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
-.sec-label::before { content: ''; width: 20px; height: 1px; background: var(--blue); }
-h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 16px; }
-.sec-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 540px; }
-
-/* ── Services ───────────────────────────────────────────────────── */
+/* ── SERVICES ── */
 #services { padding: 120px 0; }
-.srv-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
-.srv-head-left { flex: 1; }
-.srv-head-right { text-align: right; }
-.srv-count { font-size: 6rem; font-weight: 900; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.08); line-height: 1; }
-.srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-.srv-card { background: var(--bg); padding: 36px 32px; transition: background 0.25s; cursor: default; }
-.srv-card:hover { background: var(--bg2); }
-.srv-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 20px; }
-.srv-icon { font-size: 1.6rem; margin-bottom: 16px; }
-.srv-name { font-size: 1rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
-.srv-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
-.srv-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 50px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); }
-.hipaa-row { display: flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 0.72rem; font-weight: 700; color: #22d3a5; }
+.sec-tag { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; display: block; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.08; margin-bottom: 64px; }
+.srv-list { list-style: none; }
+.srv-item {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  align-items: start; gap: 32px;
+  padding: 36px 0; border-bottom: 1px solid var(--border);
+  transition: opacity .2s;
+}
+.srv-item:first-child { border-top: 1px solid var(--border); }
+.srv-item:hover .srv-n { color: var(--blue); }
+.srv-n { font-size: .75rem; font-weight: 700; color: var(--muted); padding-top: 6px; }
+.srv-body {}
+.srv-name { font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+.srv-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; max-width: 520px; }
+.srv-arrow { font-size: 1.2rem; color: var(--muted); padding-top: 4px; transition: transform .2s, color .2s; }
+.srv-item:hover .srv-arrow { transform: translateX(4px); color: var(--blue); }
 
-/* ── Why ────────────────────────────────────────────────────────── */
+/* ── WHY ── */
 #why { padding: 120px 0; border-top: 1px solid var(--border); }
-.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
-.why-left h2 { margin-bottom: 20px; }
-.why-left .sec-sub { margin-bottom: 40px; }
-.why-num { font-size: 9rem; font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.06); letter-spacing: -0.06em; line-height: 0.9; margin-bottom: -24px; display: block; }
-.why-right { display: flex; flex-direction: column; gap: 0; }
-.why-item { padding: 28px 0; border-bottom: 1px solid var(--border); display: flex; gap: 24px; align-items: flex-start; }
-.why-item:first-child { border-top: 1px solid var(--border); }
-.why-idx { font-size: 0.75rem; font-weight: 700; color: var(--blue); padding-top: 3px; min-width: 28px; }
-.why-title { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
-.why-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+.why-intro { margin-bottom: 72px; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.why-card { padding: 40px; border: 1px solid var(--border); margin: -1px 0 0 -1px; }
+.why-card:hover { background: rgba(255,255,255,.02); }
+.wc-n { font-size: .7rem; font-weight: 700; color: var(--blue); letter-spacing: .1em; margin-bottom: 16px; }
+.wc-t { font-size: 1rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
+.wc-d { font-size: .85rem; color: var(--muted); line-height: 1.7; }
 
-/* ── Process ────────────────────────────────────────────────────── */
+/* ── PROCESS ── */
 #process { padding: 120px 0; border-top: 1px solid var(--border); }
-.proc-head { text-align: center; margin-bottom: 72px; }
-.proc-head .sec-label { justify-content: center; }
-.proc-head .sec-label::before { display: none; }
-.proc-steps { display: grid; grid-template-columns: repeat(4,1fr); position: relative; }
-.proc-steps::before {
-  content: ''; position: absolute;
-  height: 1px; top: 28px; left: 14%; right: 14%;
-  background: linear-gradient(90deg, transparent, var(--border2) 30%, var(--border2) 70%, transparent);
+.proc-list { list-style: none; counter-reset: step; }
+.proc-item {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--border);
+  align-items: start;
 }
-.proc-step { text-align: center; padding: 0 20px; }
-.step-circle {
-  width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 24px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
-  position: relative; z-index: 1;
-}
-.step-1 .step-circle { background: var(--blue); color: #000; box-shadow: 0 0 24px rgba(0,200,255,0.3); }
-.step-2 .step-circle { background: var(--bg3); border: 1px solid var(--border2); color: var(--white); }
-.step-3 .step-circle { background: var(--bg3); border: 1px solid var(--border2); color: var(--white); }
-.step-4 .step-circle { background: var(--bg3); border: 1px solid var(--border2); color: var(--white); }
-.step-name { font-size: 1rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
-.step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+.proc-item:first-child { border-top: 1px solid var(--border); }
+.proc-num { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: .78rem; font-weight: 800; flex-shrink: 0; border: 1px solid var(--border); color: var(--muted); }
+.proc-item.active .proc-num { background: var(--blue); color: #000; border-color: var(--blue); }
+.proc-t { font-size: 1.1rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+.proc-d { font-size: .88rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
 
-/* ── Testimonials ───────────────────────────────────────────────── */
+/* ── TESTIMONIALS ── */
 #testimonials { padding: 120px 0; border-top: 1px solid var(--border); }
-.testi-head { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: end; margin-bottom: 64px; }
-.testi-trust { display: flex; flex-wrap: wrap; gap: 10px; }
-.t-pill { padding: 8px 18px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
-.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-.testi-card { background: var(--bg); padding: 36px 32px; }
-.stars { font-size: 0.75rem; letter-spacing: 2px; color: var(--blue); margin-bottom: 16px; }
-.testi-q { font-size: 0.9rem; color: var(--off); line-height: 1.8; margin-bottom: 24px; font-style: italic; }
-.testi-auth { display: flex; align-items: center; gap: 12px; }
-.avatar { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border2); background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; color: var(--blue); flex-shrink: 0; }
-.auth-name { font-size: 0.85rem; font-weight: 700; }
-.auth-role { font-size: 0.75rem; color: var(--muted); }
+.testi-list { list-style: none; }
+.testi-item { padding: 40px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; }
+.testi-item:first-child { border-top: 1px solid var(--border); }
+.t-stars { font-size: .7rem; color: var(--blue); letter-spacing: 2px; margin-bottom: 14px; }
+.t-q { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.75); max-width: 600px; font-style: italic; margin-bottom: 20px; }
+.t-name { font-size: .85rem; font-weight: 700; }
+.t-role { font-size: .78rem; color: var(--muted); }
+.t-co { font-size: .75rem; font-weight: 700; color: var(--blue); letter-spacing: .08em; text-transform: uppercase; text-align: right; padding-top: 6px; }
 
-/* ── Contact ────────────────────────────────────────────────────── */
+/* ── CONTACT ── */
 #contact { padding: 120px 0; border-top: 1px solid var(--border); }
-.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
-.contact-left { padding-top: 8px; }
-.contact-left h2 { margin-bottom: 20px; }
-.contact-left .sec-sub { margin-bottom: 48px; }
-.c-item { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
-.c-icon { width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--bg2); }
-.c-lbl { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
-.c-val { font-size: 0.9rem; font-weight: 600; }
-.contact-right {}
-.form-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 40px; }
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.fg { margin-bottom: 18px; }
-.fg label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-bottom: 7px; }
+.contact-intro { margin-bottom: 64px; }
+.contact-intro h2 { margin-bottom: 16px; }
+.contact-intro p { font-size: 1rem; color: var(--muted); max-width: 460px; line-height: 1.75; }
+.form-wrap { max-width: 640px; }
+.fg { margin-bottom: 20px; }
+.fg label { display: block; font-size: .75rem; font-weight: 700; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
 .fg input, .fg select, .fg textarea {
-  width: 100%; padding: 11px 14px; border-radius: 8px;
-  background: var(--bg3); border: 1px solid var(--border);
-  color: var(--white); font-family: inherit; font-size: 0.88rem; outline: none; transition: border-color 0.2s;
+  width: 100%; padding: 13px 16px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--white); font-family: inherit;
+  font-size: .9rem; outline: none; transition: border-color .2s;
 }
 .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
-.fg select option { background: var(--bg2); }
-.fg textarea { min-height: 100px; resize: vertical; }
-.privacy { font-size: 0.74rem; color: var(--muted); margin-bottom: 18px; }
-.form-btn { width: 100%; padding: 13px; background: var(--white); color: #000; border-radius: 50px; font-weight: 800; font-size: 0.9rem; cursor: pointer; border: none; font-family: inherit; transition: all 0.2s; letter-spacing: -0.01em; }
-.form-btn:hover { background: var(--blue); }
-.success { display: none; text-align: center; padding: 40px 24px; }
-.success-ico { font-size: 2.5rem; margin-bottom: 12px; }
-.success h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-.success p { font-size: 0.88rem; color: var(--muted); }
+.fg select option { background: #111; }
+.fg textarea { min-height: 120px; resize: vertical; }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.priv { font-size: .74rem; color: var(--muted); margin-bottom: 24px; }
+.fsub { padding: 14px 36px; background: var(--white); color: #000; border-radius: 50px; font-weight: 800; font-size: .9rem; cursor: pointer; border: none; font-family: inherit; transition: background .2s; }
+.fsub:hover { background: var(--blue); }
+.suc { display: none; padding: 60px 0; }
+.suc h3 { font-size: 1.5rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 8px; }
+.suc p { color: var(--muted); }
 
-/* ── Footer ─────────────────────────────────────────────────────── */
-footer { border-top: 1px solid var(--border); padding: 64px 0 32px; position: relative; z-index: 1; }
-.footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 56px; }
-.f-brand { }
-.f-logo { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-.f-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; max-width: 240px; margin-bottom: 22px; }
-.f-social { display: flex; gap: 10px; }
-.f-soc { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: all 0.2s; }
-.f-soc:hover { border-color: var(--white); color: var(--white); }
-.f-col h5 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
-.f-col ul { list-style: none; }
-.f-col li { margin-bottom: 10px; }
-.f-col a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-.f-col a:hover { color: var(--white); }
-.footer-bot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; border-top: 1px solid var(--border); }
-.f-copy { font-size: 0.78rem; color: var(--muted); }
-.hipaa-seal { display: flex; align-items: center; gap: 7px; font-size: 0.72rem; color: var(--muted); padding: 5px 12px; border: 1px solid rgba(34,211,165,0.2); border-radius: 50px; }
-.hipaa-seal::before { content: '🛡'; font-size: 0.9rem; }
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
+.ft { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 56px; }
+.fb-logo { font-weight: 900; font-size: 1rem; letter-spacing: -.02em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.fb-d { font-size: .83rem; color: var(--muted); line-height: 1.7; max-width: 220px; margin-bottom: 24px; }
+.fsoc { display: flex; gap: 8px; }
+.fsl { width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 6px; display: grid; place-items: center; font-size: .78rem; color: var(--muted); transition: all .2s; }
+.fsl:hover { border-color: var(--white); color: var(--white); }
+.fc h5 { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.fc ul { list-style: none; }
+.fc li { margin-bottom: 10px; }
+.fc a { font-size: .83rem; color: var(--muted); transition: color .2s; }
+.fc a:hover { color: var(--white); }
+.fb { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 28px; border-top: 1px solid var(--border); }
+.fc-copy { font-size: .78rem; color: var(--muted); }
+.hipaa { font-size: .72rem; color: var(--muted); padding: 5px 14px; border: 1px solid rgba(0,200,255,.15); border-radius: 50px; }
 
-/* ── Responsive ─────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .hero-layout { grid-template-columns: 1fr; }
-  .hero-panel { display: none; }
-  .srv-grid { grid-template-columns: repeat(2,1fr); }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .why-layout { gap: 60px; }
-}
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .nav-btn { display: none; }
-  .ham { display: flex; }
-  .hero-layout { grid-template-columns: 1fr; }
-  .hero-panel { display: none; }
-  .srv-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .srv-grid { grid-template-columns: 1fr; }
-  .why-layout { grid-template-columns: 1fr; gap: 48px; }
-  .why-num { display: none; }
-  .proc-steps { grid-template-columns: 1fr 1fr; }
-  .proc-steps::before { display: none; }
-  .testi-head { grid-template-columns: 1fr; gap: 24px; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-  .frow { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr; }
-  .footer-bot { flex-direction: column; align-items: flex-start; }
+  .nl, .nb { display: none; }
+  .hb { display: flex; }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2rem; }
+  .hero-nums { gap: 32px; }
+  .srv-item { grid-template-columns: 32px 1fr; }
+  .srv-arrow { display: none; }
+  .why-grid { grid-template-columns: 1fr; }
+  .testi-item { grid-template-columns: 1fr; }
+  .t-co { text-align: left; }
+  .fg-row { grid-template-columns: 1fr; }
+  .ft { grid-template-columns: 1fr 1fr; }
+  .fb { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }
-  h1 { font-size: 2.6rem; }
-  h2 { font-size: 1.9rem; }
-  .proc-steps { grid-template-columns: 1fr; }
-  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  h1 { font-size: 2.2rem; }
+  .proc-item { grid-template-columns: 1fr; gap: 16px; }
+  .ft { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<canvas id="c" aria-hidden="true"></canvas>
-
-<!-- ── Nav ──────────────────────────────────────────────────────── -->
+<!-- NAV -->
 <nav id="nav">
-  <div class="container nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-mark">D</div>
-      Dirac AI Lab
-    </a>
-    <ul class="nav-links">
+  <div class="container ni">
+    <a href="#" class="logo"><div class="lm">D</div>Dirac AI Lab</a>
+    <ul class="nl">
       <li><a href="#services">Services</a></li>
       <li><a href="#why">About</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#testimonials">Clients</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-btn">Get a Consultation</a>
-    <button class="ham" id="ham" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#contact" class="nb">Get a Consultation</a>
+    <button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<div class="mob-menu" id="mob" aria-label="Mobile menu">
-  <button class="mob-close" id="mob-close">✕ Close</button>
-  <a href="#services" class="mob-link">Services</a>
-  <a href="#why" class="mob-link">About</a>
-  <a href="#process" class="mob-link">Process</a>
-  <a href="#testimonials" class="mob-link">Clients</a>
-  <a href="#contact" class="mob-link">Contact</a>
+<div class="mm" id="mm">
+  <button class="mc" id="mc">✕ Close</button>
+  <a href="#services">Services</a>
+  <a href="#why">About</a>
+  <a href="#process">Process</a>
+  <a href="#testimonials">Clients</a>
+  <a href="#contact">Contact</a>
 </div>
 
-<!-- ── Hero ─────────────────────────────────────────────────────── -->
+<!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="hero-layout">
-      <div>
-        <div class="hero-eyebrow fade-in">Production-Grade AI</div>
-        <h1 class="fade-in d1">
-          AI Built for<br /><em>the Real World</em>
-        </h1>
-        <p class="hero-sub fade-in d2">
-          We design, build, and deploy AI systems that run in production — voice agents, HIPAA-compliant healthcare AI, recommendation engines, and full MLOps pipelines.
-        </p>
-        <div class="hero-actions fade-in d3">
-          <a href="#contact" class="btn-white">Get a Free Consultation</a>
-          <a href="#services" class="btn-ghost">Explore Services ↓</a>
-        </div>
-        <div class="hero-stats fade-in d4">
-          <div>
-            <div class="stat-val">50+</div>
-            <div class="stat-lbl">Projects Deployed</div>
-          </div>
-          <div>
-            <div class="stat-val">99.9%</div>
-            <div class="stat-lbl">Uptime SLA</div>
-          </div>
-          <div>
-            <div class="stat-val blue">HIPAA</div>
-            <div class="stat-lbl">Certified</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-panel fade-in d2" aria-label="Live system metrics">
-        <div class="panel-header">
-          <div class="dot live"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <span class="panel-title">Live System · Voice Agent</span>
-        </div>
-        <div class="panel-body">
-          <div class="metric-row">
-            <span class="metric-name">Status</span>
-            <span class="metric-badge badge-green">Active</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-name">Calls Today</span>
-            <span class="metric-val up">247</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-name">Avg Response</span>
-            <span class="metric-val blue">0.8s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-name">Booked</span>
-            <span class="metric-val up">89%</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-name">HIPAA Compliant</span>
-            <span class="metric-badge badge-green">✓ Verified</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-name">Model</span>
-            <span class="metric-val blue">Claude 3.5</span>
-          </div>
-        </div>
-        <div class="panel-footer">
-          <div class="pf-dot"></div>
-          <span class="pf-text">All systems operational</span>
-        </div>
-      </div>
+    <span class="hero-tag f">Dirac AI Lab</span>
+    <h1 class="f d1">AI Built for<br /><span class="hl">the Real World.</span></h1>
+    <p class="hero-p f d2">We design, build, and deploy AI systems that actually run in production — voice agents, HIPAA-compliant healthcare AI, recommendation engines, and full MLOps pipelines.</p>
+    <div class="f d3">
+      <a href="#contact" class="btn-main">Get a Free Consultation</a>
+      <a href="#services" class="btn-sec">See Our Services →</a>
+    </div>
+    <div class="hero-nums f d4">
+      <div><div class="hn-val">50+</div><div class="hn-lbl">Projects Deployed</div></div>
+      <div><div class="hn-val">99.9%</div><div class="hn-lbl">Uptime SLA</div></div>
+      <div><div class="hn-val" style="color:var(--blue)">HIPAA</div><div class="hn-lbl">Certified</div></div>
     </div>
   </div>
 </section>
 
-<!-- Ticker -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker">
-    <span class="ticker-item">Voice AI Agents</span>
-    <span class="ticker-item">HIPAA Compliance</span>
-    <span class="ticker-item">LLM Integration</span>
-    <span class="ticker-item">MLOps & CI/CD</span>
-    <span class="ticker-item">Recommendation Systems</span>
-    <span class="ticker-item">Classification Models</span>
-    <span class="ticker-item">AWS · GCP · Azure</span>
-    <span class="ticker-item">Production-Grade AI</span>
-    <span class="ticker-item">Voice AI Agents</span>
-    <span class="ticker-item">HIPAA Compliance</span>
-    <span class="ticker-item">LLM Integration</span>
-    <span class="ticker-item">MLOps & CI/CD</span>
-    <span class="ticker-item">Recommendation Systems</span>
-    <span class="ticker-item">Classification Models</span>
-    <span class="ticker-item">AWS · GCP · Azure</span>
-    <span class="ticker-item">Production-Grade AI</span>
-  </div>
-</div>
-
-<!-- ── Services ──────────────────────────────────────────────────── -->
-<section id="services" style="padding:120px 0;">
+<!-- SERVICES -->
+<section id="services">
   <div class="container">
-    <div class="srv-head">
-      <div class="srv-head-left">
-        <div class="sec-label fade-in">What We Build</div>
-        <h2 class="fade-in d1">Six core<br />capabilities</h2>
-      </div>
-      <div class="srv-head-right">
-        <div class="srv-count fade-in d2">06</div>
-      </div>
-    </div>
-
-    <div class="srv-grid">
-      <div class="srv-card fade-in d1">
-        <div class="srv-num">01</div>
-        <div class="srv-icon">🎙️</div>
-        <div class="srv-name">Voice AI Agents</div>
-        <div class="srv-desc">Custom conversational agents powered by LLMs. Inbound support, scheduling, sales, and healthcare triage — built to handle real call volume at scale.</div>
-        <div class="srv-tags"><span class="tag">Customer Support</span><span class="tag">Scheduling</span><span class="tag">Sales</span><span class="tag">Triage</span></div>
-      </div>
-      <div class="srv-card fade-in d2">
-        <div class="srv-num">02</div>
-        <div class="srv-icon">⚡</div>
-        <div class="srv-name">Claude & LLM Integration</div>
-        <div class="srv-desc">End-to-end setup for Claude (Anthropic) and open-source LLMs. Architecture, fine-tuning, API wiring, and ongoing technical support.</div>
-        <div class="srv-tags"><span class="tag">Claude</span><span class="tag">OpenClaw</span><span class="tag">Fine-tuning</span><span class="tag">Enterprise</span></div>
-      </div>
-      <div class="srv-card fade-in d3">
-        <div class="srv-num">03</div>
-        <div class="srv-icon">🏥</div>
-        <div class="srv-name">HIPAA-Compliant AI</div>
-        <div class="srv-desc">Medical-grade AI with full HIPAA compliance. Encrypted pipelines, audit logging, patient privacy by design, and BAA agreements ready.</div>
-        <div class="srv-tags"><span class="tag">Audit Logs</span><span class="tag">Encryption</span><span class="tag">BAA Ready</span></div>
-        <div class="hipaa-row">🛡️ HIPAA Compliant — BAA Available</div>
-      </div>
-      <div class="srv-card fade-in d4">
-        <div class="srv-num">04</div>
-        <div class="srv-icon">🎯</div>
-        <div class="srv-name">Recommendation Systems</div>
-        <div class="srv-desc">Personalized engines that drive engagement and revenue. Built for e-commerce, content platforms, and SaaS using embeddings and real-time inference.</div>
-        <div class="srv-tags"><span class="tag">E-commerce</span><span class="tag">Content</span><span class="tag">Real-time</span><span class="tag">SaaS</span></div>
-      </div>
-      <div class="srv-card fade-in d5">
-        <div class="srv-num">05</div>
-        <div class="srv-icon">🔍</div>
-        <div class="srv-name">Classification Models</div>
-        <div class="srv-desc">Custom ML classification pipelines for fraud detection, churn prediction, document classification, and anomaly detection — built for accuracy and speed.</div>
-        <div class="srv-tags"><span class="tag">Fraud</span><span class="tag">Churn</span><span class="tag">Documents</span><span class="tag">Anomaly</span></div>
-      </div>
-      <div class="srv-card fade-in d6">
-        <div class="srv-num">06</div>
-        <div class="srv-icon">🚀</div>
-        <div class="srv-name">MLOps & Model Lifecycle</div>
-        <div class="srv-desc">CI/CD for ML, automated retraining, model monitoring and drift detection, cloud deployment on AWS, GCP, and Azure.</div>
-        <div class="srv-tags"><span class="tag">AWS/GCP/Azure</span><span class="tag">CI/CD</span><span class="tag">Monitoring</span><span class="tag">Drift</span></div>
-      </div>
-    </div>
+    <span class="sec-tag f">Services</span>
+    <h2 class="f d1">What we build.</h2>
+    <ul class="srv-list">
+      <li class="srv-item f d1">
+        <span class="srv-n">01</span>
+        <div class="srv-body">
+          <div class="srv-name">Voice AI Agents</div>
+          <div class="srv-desc">Custom conversational voice agents for inbound support, scheduling, sales, and healthcare triage. Built to handle real call volume at scale.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="srv-item f d2">
+        <span class="srv-n">02</span>
+        <div class="srv-body">
+          <div class="srv-name">Claude & LLM Integration</div>
+          <div class="srv-desc">End-to-end setup for Claude (Anthropic) and open-source LLMs. Architecture, fine-tuning, API wiring, and ongoing technical support.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="srv-item f d3">
+        <span class="srv-n">03</span>
+        <div class="srv-body">
+          <div class="srv-name">HIPAA-Compliant AI</div>
+          <div class="srv-desc">Medical-grade AI with full HIPAA compliance. Encrypted pipelines, audit logging, patient privacy by design, and BAA agreements ready to sign.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="srv-item f d4">
+        <span class="srv-n">04</span>
+        <div class="srv-body">
+          <div class="srv-name">Recommendation Systems</div>
+          <div class="srv-desc">Personalized engines that drive engagement and revenue. Built for e-commerce, content platforms, and SaaS using embeddings and real-time inference.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="srv-item f d5">
+        <span class="srv-n">05</span>
+        <div class="srv-body">
+          <div class="srv-name">Classification Models</div>
+          <div class="srv-desc">Custom ML pipelines for fraud detection, churn prediction, document classification, and anomaly detection — built for accuracy and production speed.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+      <li class="srv-item f d6">
+        <span class="srv-n">06</span>
+        <div class="srv-body">
+          <div class="srv-name">MLOps & Model Lifecycle</div>
+          <div class="srv-desc">CI/CD for ML, automated retraining, drift detection, model monitoring, and cloud deployment across AWS, GCP, and Azure.</div>
+        </div>
+        <span class="srv-arrow" aria-hidden="true">→</span>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ── Why ───────────────────────────────────────────────────────── -->
+<!-- WHY -->
 <section id="why">
   <div class="container">
-    <div class="why-layout">
-      <div class="why-left">
-        <span class="why-num fade-in">4</span>
-        <div class="sec-label fade-in">Why Dirac AI Lab</div>
-        <h2 class="fade-in d1">Built different.<br />Deployed right.</h2>
-        <p class="sec-sub fade-in d2">We don't sell demos. We build systems that run in production, handle real traffic, and deliver measurable outcomes.</p>
-        <br /><br />
-        <a href="#contact" class="btn-white fade-in d3" style="display:inline-block;padding:13px 28px;">Start a Project →</a>
+    <div class="why-intro">
+      <span class="sec-tag f">Why Us</span>
+      <h2 class="f d1">Built different.<br />Deployed right.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card f d1">
+        <div class="wc-n">01</div>
+        <div class="wc-t">HIPAA Certified</div>
+        <div class="wc-d">Full compliance, audit trails, and BAA agreements for healthcare clients. Security is in the architecture from day one — not bolted on later.</div>
       </div>
-      <div class="why-right">
-        <div class="why-item fade-in d1">
-          <span class="why-idx">01</span>
-          <div>
-            <div class="why-title">HIPAA Certified</div>
-            <div class="why-desc">Full compliance, audit trails, and BAA agreements for healthcare clients. Data security is never an afterthought — it's in the architecture from day one.</div>
-          </div>
-        </div>
-        <div class="why-item fade-in d2">
-          <span class="why-idx">02</span>
-          <div>
-            <div class="why-title">Production-Grade</div>
-            <div class="why-desc">Every system is load-tested, monitored, and built to handle real traffic — not just a polished demo. We deploy at scale and prove it with uptime SLAs.</div>
-          </div>
-        </div>
-        <div class="why-item fade-in d3">
-          <span class="why-idx">03</span>
-          <div>
-            <div class="why-title">White-Glove Onboarding</div>
-            <div class="why-desc">From kickoff to go-live, we're hands-on. Full training, documentation, and ongoing support until your team owns it completely.</div>
-          </div>
-        </div>
-        <div class="why-item fade-in d4">
-          <span class="why-idx">04</span>
-          <div>
-            <div class="why-title">100% Custom-Built</div>
-            <div class="why-desc">No off-the-shelf solutions. Every system is designed for your specific use case, stack, data, and business objectives.</div>
-          </div>
-        </div>
+      <div class="why-card f d2">
+        <div class="wc-n">02</div>
+        <div class="wc-t">Production-Grade Only</div>
+        <div class="wc-d">Every system is load-tested, monitored, and built to handle real traffic. We don't sell demos. We deploy systems that run for years.</div>
+      </div>
+      <div class="why-card f d3">
+        <div class="wc-n">03</div>
+        <div class="wc-t">White-Glove Onboarding</div>
+        <div class="wc-d">Full training, documentation, and ongoing support until your team owns it. We stay on until you're confident — not until the invoice clears.</div>
+      </div>
+      <div class="why-card f d4">
+        <div class="wc-n">04</div>
+        <div class="wc-t">100% Custom</div>
+        <div class="wc-d">No templates. Every system is designed for your specific use case, data, stack, and business objectives. Exact fit, every time.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Process ───────────────────────────────────────────────────── -->
+<!-- PROCESS -->
 <section id="process">
   <div class="container">
-    <div class="proc-head">
-      <div class="sec-label fade-in">How It Works</div>
-      <h2 class="fade-in d1">From idea to <em class="blue">production</em></h2>
-      <p class="sec-sub fade-in d2" style="margin:0 auto;">A clear, proven process that gets your AI live — fast, reliably, without surprises.</p>
-    </div>
-    <div class="proc-steps">
-      <div class="proc-step step-1 fade-in d1">
-        <div class="step-circle">01</div>
-        <div class="step-name">Consult</div>
-        <div class="step-desc">We meet to understand your goals, data, and constraints. No generic pitches — focused discovery only.</div>
-      </div>
-      <div class="proc-step step-2 fade-in d2">
-        <div class="step-circle">02</div>
-        <div class="step-name">Design</div>
-        <div class="step-desc">Architecture, models, APIs, data pipelines, compliance requirements, and infra plan — all mapped before we write code.</div>
-      </div>
-      <div class="proc-step step-3 fade-in d3">
-        <div class="step-circle">03</div>
-        <div class="step-name">Build</div>
-        <div class="step-desc">Rapid development with weekly check-ins. You see real progress, not status updates.</div>
-      </div>
-      <div class="proc-step step-4 fade-in d4">
-        <div class="step-circle">04</div>
-        <div class="step-name">Deploy</div>
-        <div class="step-desc">Production deployment with monitoring, alerting, and handoff. We stay on until you're fully confident.</div>
-      </div>
-    </div>
+    <span class="sec-tag f">Process</span>
+    <h2 class="f d1">How we work.</h2>
+    <ul class="proc-list">
+      <li class="proc-item active f d1">
+        <div class="proc-num">01</div>
+        <div>
+          <div class="proc-t">Consult</div>
+          <div class="proc-d">We meet to understand your goals, data, and constraints. No generic pitches — focused discovery only. We come with questions, not slide decks.</div>
+        </div>
+      </li>
+      <li class="proc-item f d2">
+        <div class="proc-num">02</div>
+        <div>
+          <div class="proc-t">Design</div>
+          <div class="proc-d">Architecture, models, APIs, data pipelines, compliance, and infra plan — mapped before we write a single line of code.</div>
+        </div>
+      </li>
+      <li class="proc-item f d3">
+        <div class="proc-num">03</div>
+        <div>
+          <div class="proc-t">Build</div>
+          <div class="proc-d">Rapid development with weekly check-ins. You see real working software at each milestone — not status updates.</div>
+        </div>
+      </li>
+      <li class="proc-item f d4">
+        <div class="proc-num">04</div>
+        <div>
+          <div class="proc-t">Deploy</div>
+          <div class="proc-d">Production deployment with monitoring, alerting, and full handoff. We stay on until your team is confident and everything is green.</div>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ── Testimonials ──────────────────────────────────────────────── -->
+<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="container">
-    <div class="testi-head">
-      <div>
-        <div class="sec-label fade-in">Clients</div>
-        <h2 class="fade-in d1">Trusted by<br />teams that ship</h2>
-      </div>
-      <div>
-        <p class="sec-sub fade-in d2" style="margin-bottom:24px;">Businesses across healthcare, e-commerce, and SaaS rely on us for production AI.</p>
-        <div class="testi-trust fade-in d3">
-          <span class="t-pill">🏥 Healthcare</span>
-          <span class="t-pill">🛍️ E-commerce</span>
-          <span class="t-pill">💼 SaaS</span>
-          <span class="t-pill">🏦 Fintech</span>
+    <span class="sec-tag f">Clients</span>
+    <h2 class="f d1">What they say.</h2>
+    <ul class="testi-list">
+      <li class="testi-item f d1">
+        <div>
+          <div class="t-stars">★★★★★</div>
+          <blockquote class="t-q">"Dirac AI Lab built our inbound voice scheduling agent in three weeks. It handles 200+ calls a day without issues. The HIPAA compliance work was thorough and gave us complete peace of mind."</blockquote>
+          <div class="t-name">Sarah L.</div>
+          <div class="t-role">VP Operations, MedCare Group</div>
         </div>
-      </div>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card fade-in d1">
-        <div class="stars">★★★★★</div>
-        <blockquote class="testi-q">"Dirac AI Lab built our inbound voice scheduling agent in three weeks. It handles 200+ calls a day without issues. The HIPAA work was thorough and gave us complete peace of mind."</blockquote>
-        <div class="testi-auth">
-          <div class="avatar">SL</div>
-          <div>
-            <div class="auth-name">Sarah L.</div>
-            <div class="auth-role">VP Operations, MedCare Group</div>
-          </div>
+        <div class="t-co">Healthcare</div>
+      </li>
+      <li class="testi-item f d2">
+        <div>
+          <div class="t-stars">★★★★★</div>
+          <blockquote class="t-q">"34% lift in product conversion within 60 days of deploying their recommendation engine. Fast, communicative, and they actually understood our data model."</blockquote>
+          <div class="t-name">Marcus K.</div>
+          <div class="t-role">CTO, StyleForward</div>
         </div>
-      </div>
-      <div class="testi-card fade-in d2">
-        <div class="stars">★★★★★</div>
-        <blockquote class="testi-q">"34% lift in product conversion within 60 days of deploying their recommendation engine. Fast, communicative, and they actually understood our data model."</blockquote>
-        <div class="testi-auth">
-          <div class="avatar">MK</div>
-          <div>
-            <div class="auth-name">Marcus K.</div>
-            <div class="auth-role">CTO, StyleForward</div>
-          </div>
+        <div class="t-co">E-commerce</div>
+      </li>
+      <li class="testi-item f d3">
+        <div>
+          <div class="t-stars">★★★★★</div>
+          <blockquote class="t-q">"Their MLOps setup cut our model deployment time from 3 weeks to 2 hours. The monitoring dashboards and retraining pipelines paid for themselves in the first month."</blockquote>
+          <div class="t-name">Aisha R.</div>
+          <div class="t-role">Head of Data, Nexus SaaS</div>
         </div>
-      </div>
-      <div class="testi-card fade-in d3">
-        <div class="stars">★★★★★</div>
-        <blockquote class="testi-q">"Their MLOps setup cut our model deployment time from 3 weeks to 2 hours. The monitoring dashboards and retraining pipelines paid for themselves in the first month."</blockquote>
-        <div class="testi-auth">
-          <div class="avatar">AR</div>
-          <div>
-            <div class="auth-name">Aisha R.</div>
-            <div class="auth-role">Head of Data, Nexus SaaS</div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div class="t-co">SaaS</div>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ── Contact ───────────────────────────────────────────────────── -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="contact-layout">
-      <div class="contact-left">
-        <div class="sec-label fade-in">Get In Touch</div>
-        <h2 class="fade-in d1">Let's build<br />something <em class="blue">great</em></h2>
-        <p class="sec-sub fade-in d2">Tell us about your project. We'll respond within 24 hours with honest advice — no sales pitch.</p>
-        <br /><br />
-        <div class="c-item fade-in d3">
-          <div class="c-icon">📧</div>
-          <div><div class="c-lbl">Email</div><div class="c-val">hello@diracailab.com</div></div>
+    <div class="contact-intro">
+      <span class="sec-tag f">Contact</span>
+      <h2 class="f d1">Let's build something great.</h2>
+      <p class="f d2">Tell us about your project. We'll respond within 24 hours with honest advice — no sales pitch.</p>
+    </div>
+    <div class="form-wrap f d2">
+      <form id="cform" novalidate>
+        <div class="fg-row">
+          <div class="fg"><label for="fn">Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required /></div>
+          <div class="fg"><label for="em">Email *</label><input type="email" id="em" name="email" placeholder="jane@company.com" required /></div>
         </div>
-        <div class="c-item fade-in d4">
-          <div class="c-icon">🌐</div>
-          <div><div class="c-lbl">Website</div><div class="c-val">diracailab.com</div></div>
+        <div class="fg"><label for="co">Company</label><input type="text" id="co" name="company" placeholder="Acme Corp" /></div>
+        <div class="fg">
+          <label for="sv">Service *</label>
+          <select id="sv" name="service" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Voice AI Agents</option>
+            <option>Claude / LLM Integration</option>
+            <option>HIPAA-Compliant AI</option>
+            <option>Recommendation Systems</option>
+            <option>Classification Models</option>
+            <option>MLOps & Model Lifecycle</option>
+            <option>Other / Not sure yet</option>
+          </select>
         </div>
-        <div class="c-item fade-in d5">
-          <div class="c-icon">⏱️</div>
-          <div><div class="c-lbl">Response Time</div><div class="c-val">Within 24 hours</div></div>
-        </div>
-      </div>
-      <div class="contact-right fade-in d2">
-        <div class="form-wrap">
-          <form id="cform" novalidate>
-            <div class="frow">
-              <div class="fg"><label for="fn">Full Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required /></div>
-              <div class="fg"><label for="em">Email *</label><input type="email" id="em" name="email" placeholder="jane@company.com" required /></div>
-            </div>
-            <div class="fg"><label for="co">Company</label><input type="text" id="co" name="company" placeholder="Acme Corp" /></div>
-            <div class="fg">
-              <label for="sv">Service of Interest *</label>
-              <select id="sv" name="service" required>
-                <option value="" disabled selected>Select a service…</option>
-                <option>Voice AI Agents</option>
-                <option>Claude / LLM Integration</option>
-                <option>HIPAA-Compliant AI</option>
-                <option>Recommendation Systems</option>
-                <option>Classification Models</option>
-                <option>MLOps & Model Lifecycle</option>
-                <option>Other / Not sure yet</option>
-              </select>
-            </div>
-            <div class="fg"><label for="msg">Tell us about your project *</label><textarea id="msg" name="message" placeholder="Describe your use case, current stack, and what you're trying to achieve…" required></textarea></div>
-            <p class="privacy">🔒 Your information is never shared with third parties.</p>
-            <button type="submit" class="form-btn">Send Message →</button>
-          </form>
-          <div class="success" id="suc">
-            <div class="success-ico">✅</div>
-            <h3>Message Sent</h3>
-            <p>We'll be in touch within 24 hours.</p>
-          </div>
-        </div>
+        <div class="fg"><label for="msg">Tell us about your project *</label><textarea id="msg" name="message" placeholder="Describe your use case, current stack, and what you're trying to achieve…" required></textarea></div>
+        <p class="priv">🔒 Your information is never shared with third parties.</p>
+        <button type="submit" class="fsub">Send Message →</button>
+      </form>
+      <div class="suc" id="suc">
+        <h3>Message sent.</h3>
+        <p>We'll be in touch within 24 hours.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Footer ────────────────────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-top">
-      <div class="f-brand">
-        <div class="f-logo"><div class="logo-mark">D</div> Dirac AI Lab</div>
-        <p class="f-desc">Production-grade AI for healthcare, e-commerce, and enterprise. Built by engineers who care about outcomes.</p>
-        <div class="f-social">
-          <a href="#" class="f-soc" aria-label="LinkedIn">in</a>
-          <a href="#" class="f-soc" aria-label="Twitter">𝕏</a>
-          <a href="#" class="f-soc" aria-label="GitHub">⌥</a>
+    <div class="ft">
+      <div>
+        <div class="fb-logo"><div class="lm">D</div>Dirac AI Lab</div>
+        <p class="fb-d">Production-grade AI for healthcare, e-commerce, and enterprise. Built by engineers who care about outcomes.</p>
+        <div class="fsoc">
+          <a href="#" class="fsl" aria-label="LinkedIn">in</a>
+          <a href="#" class="fsl" aria-label="Twitter">𝕏</a>
+          <a href="#" class="fsl" aria-label="GitHub">⌥</a>
         </div>
       </div>
-      <nav class="f-col"><h5>Services</h5><ul>
-        <li><a href="#services">Voice AI Agents</a></li>
+      <nav class="fc"><h5>Services</h5><ul>
+        <li><a href="#services">Voice AI</a></li>
         <li><a href="#services">LLM Integration</a></li>
         <li><a href="#services">HIPAA AI</a></li>
         <li><a href="#services">Recommendations</a></li>
         <li><a href="#services">Classification</a></li>
         <li><a href="#services">MLOps</a></li>
       </ul></nav>
-      <nav class="f-col"><h5>Company</h5><ul>
+      <nav class="fc"><h5>Company</h5><ul>
         <li><a href="#why">About</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#testimonials">Clients</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul></nav>
-      <nav class="f-col"><h5>Legal</h5><ul>
+      <nav class="fc"><h5>Legal</h5><ul>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
         <li><a href="#">HIPAA Policy</a></li>
         <li><a href="#">BAA Agreement</a></li>
       </ul></nav>
     </div>
-    <div class="footer-bot">
-      <p class="f-copy">© 2026 Dirac AI Lab · <a href="https://diracailab.com" style="color:inherit;text-decoration:none;">diracailab.com</a> · All rights reserved.</p>
-      <div class="hipaa-seal">HIPAA Compliant — All healthcare data encrypted & audited per 45 CFR Part 164</div>
+    <div class="fb">
+      <p class="fc-copy">© 2026 Dirac AI Lab · diracailab.com · All rights reserved.</p>
+      <span class="hipaa">🛡️ HIPAA Compliant — 45 CFR Part 164</span>
     </div>
   </div>
 </footer>
 
 <script>
-/* ── Neural canvas ─────────────────────────────────────────────── */
-!function(){
-  const cv=document.getElementById('c'),ctx=cv.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
-  function init(){pts=[];const n=Math.min(60,Math.floor(W*H/20000));for(let i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;});
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<160){ctx.beginPath();ctx.strokeStyle=`rgba(0,200,255,${(1-d/160)*.18})`;ctx.lineWidth=.7;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}
-    }
-    pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,.8,0,Math.PI*2);ctx.fillStyle='rgba(0,200,255,0.4)';ctx.fill();});
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{resize();init();});
-  resize();init();draw();
-}();
+// nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>24),{passive:true});
 
-/* ── Sticky nav ────────────────────────────────────────────────── */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>30),{passive:true});
+// mobile menu
+const hb=document.getElementById('hb'),mm=document.getElementById('mm'),mc=document.getElementById('mc');
+hb.onclick=()=>mm.classList.toggle('o');
+mc.onclick=()=>mm.classList.remove('o');
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('o')));
 
-/* ── Mobile menu ───────────────────────────────────────────────── */
-const ham=document.getElementById('ham'),mob=document.getElementById('mob'),close=document.getElementById('mob-close');
-ham.onclick=()=>{const o=mob.classList.toggle('open');ham.setAttribute('aria-expanded',o);};
-close.onclick=()=>mob.classList.remove('open');
-mob.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>mob.classList.remove('open')));
+// fade-in
+const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.f').forEach(el=>io.observe(el));
 
-/* ── Fade-in observer ──────────────────────────────────────────── */
-new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target);}}),{threshold:.1}).observe||0;
-const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target);}}),{threshold:.1});
-document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
-
-/* ── Form ──────────────────────────────────────────────────────── */
+// form
 document.getElementById('cform').addEventListener('submit',e=>{
   e.preventDefault();
-  const f=e.target,n=f.name.value.trim(),em=f.email.value.trim(),s=f.service.value,m=f.message.value.trim();
-  if(!n||!em||!s||!m){alert('Please fill in all required fields.');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('Please enter a valid email.');return;}
-  const btn=f.querySelector('.form-btn');btn.textContent='Sending…';btn.disabled=true;
-  setTimeout(()=>{f.style.display='none';document.getElementById('suc').style.display='block';},1000);
+  const f=e.target;
+  if(!f.name.value.trim()||!f.email.value.trim()||!f.service.value||!f.message.value.trim()){alert('Please fill in all required fields.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)){alert('Please enter a valid email.');return;}
+  const b=f.querySelector('.fsub');b.textContent='Sending…';b.disabled=true;
+  setTimeout(()=>{f.style.display='none';document.getElementById('suc').style.display='block';},900);
 });
 </script>
 </body>
