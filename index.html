@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dirac AI Lab — Custom AI Solutions | Voice Agents, LLM Integration & MLOps</title>
-  <meta name="description" content="Dirac AI Lab builds production-grade AI systems — voice AI agents, OpenClaw & LLM integration, recommendation engines, classification models, and MLOps pipelines. Get a free consultation." />
+  <title>Dirac AI Lab - Custom AI Solutions | Voice Agents, LLM Integration & MLOps</title>
+  <meta name="description" content="Dirac AI Lab builds production-grade AI systems - voice AI agents, OpenClaw & LLM integration, recommendation engines, classification models, and MLOps pipelines. Get a free consultation." />
   <meta name="keywords" content="AI consulting, voice AI agents, LLM integration, OpenClaw, recommendation systems, MLOps, machine learning, AI development, classification models, healthcare AI" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Dirac AI Lab" />
   <link rel="canonical" href="https://diracailab.com" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Dirac AI Lab — Custom AI Solutions" />
+  <meta property="og:title" content="Dirac AI Lab - Custom AI Solutions" />
   <meta property="og:description" content="Production-grade AI systems built for the real world. Voice agents, LLM integration, recommendation engines, and MLOps. Get a free consultation." />
   <meta property="og:url" content="https://diracailab.com" />
   <meta property="og:site_name" content="Dirac AI Lab" />
   <meta property="og:image" content="https://diracailab.com/og-image.png" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dirac AI Lab — Custom AI Solutions" />
+  <meta name="twitter:title" content="Dirac AI Lab - Custom AI Solutions" />
   <meta name="twitter:description" content="Production-grade AI systems built for the real world. Voice agents, LLM integration, recommendation engines, and MLOps." />
   <meta name="twitter:image" content="https://diracailab.com/og-image.png" />
   <!-- Schema.org Structured Data -->
@@ -29,7 +29,7 @@
     "name": "Dirac AI Lab",
     "url": "https://diracailab.com",
     "email": "hina@diracailab.com",
-    "description": "Dirac AI Lab builds production-grade AI systems — voice AI agents, LLM integration, recommendation engines, classification models, and MLOps pipelines.",
+    "description": "Dirac AI Lab builds production-grade AI systems - voice AI agents, LLM integration, recommendation engines, classification models, and MLOps pipelines.",
     "serviceType": ["Voice AI Agents", "LLM Integration", "Recommendation Systems", "MLOps", "Machine Learning", "AI Consulting"],
     "areaServed": "Worldwide",
     "priceRange": "$$",
@@ -100,6 +100,8 @@ nav.s { background: rgba(247,246,242,.94); backdrop-filter: blur(20px); border-b
 
 /* ── HERO ── */
 #hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 0 100px; }
+.hero-layout { display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; }
+.hero-img { width: 100%; max-width: 420px; opacity: 0.88; mix-blend-mode: multiply; }
 .hero-tag { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; display: block; }
 h1 { font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 900; letter-spacing: -.05em; line-height: 1.02; margin-bottom: 32px; }
 h1 .hl { color: var(--blue); }
@@ -219,6 +221,8 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
   h1 { font-size: 2.6rem; }
   h2 { font-size: 1.9rem; }
   #hero { padding: 80px 0 40px; min-height: auto; }
+  .hero-layout { grid-template-columns: 1fr; }
+  .hero-img { display: none; }
   .hero-nums { gap: 20px; flex-wrap: wrap; margin-top: 24px; padding-top: 24px; }
   .hero-nums > div { min-width: 80px; }
   .hn-val { font-size: 1.6rem; }
@@ -301,9 +305,11 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
 <!-- HERO -->
 <section id="hero">
   <div class="container">
+    <div class="hero-layout">
+    <div>
     <span class="hero-tag f">Dirac AI Lab</span>
     <h1 class="f d1">AI Built for<br /><span class="hl">the Real World.</span></h1>
-    <p class="hero-p f d2">We design, build, and deploy AI systems that actually run in production — voice agents, recommendation engines, and full MLOps pipelines.</p>
+    <p class="hero-p f d2">We design, build, and deploy AI systems that actually run in production - voice agents, recommendation engines, and full MLOps pipelines.</p>
     <div class="f d3">
       <a href="#contact" class="btn-main">Get a Free Consultation</a>
       <a href="#services" class="btn-sec">See Our Services →</a>
@@ -311,7 +317,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
     <div class="hero-nums f d4">
       <div><div class="hn-val">50+</div><div class="hn-lbl">Projects Deployed</div></div>
       <div><div class="hn-val">99.9%</div><div class="hn-lbl">Uptime SLA</div></div>
-
+    </div>
+    </div>
+    <img src="./hero-art.jpg" alt="AI neural network illustration" class="hero-img f d2" />
     </div>
   </div>
 </section>
@@ -340,7 +348,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
         <span class="srv-n">03</span>
         <div class="srv-body">
           <div class="srv-name">Healthcare AI</div>
-          <div class="srv-desc">AI solutions built for healthcare — patient scheduling, clinical triage, and workflow automation with a focus on data privacy and security.</div>
+          <div class="srv-desc">AI solutions built for healthcare - patient scheduling, clinical triage, and workflow automation with a focus on data privacy and security.</div>
         </div>
       </li>
       <li class="srv-item f d4">
@@ -354,7 +362,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
         <span class="srv-n">05</span>
         <div class="srv-body">
           <div class="srv-name">Classification Models</div>
-          <div class="srv-desc">Custom ML pipelines for fraud detection, churn prediction, document classification, and anomaly detection — built for accuracy and production speed.</div>
+          <div class="srv-desc">Custom ML pipelines for fraud detection, churn prediction, document classification, and anomaly detection - built for accuracy and production speed.</div>
         </div>
       </li>
       <li class="srv-item f d6">
@@ -379,7 +387,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
       <div class="why-card f d1">
         <div class="wc-n">01</div>
         <div class="wc-t">Security First</div>
-        <div class="wc-d">Encrypted pipelines, audit logging, and data privacy by design. Security is in the architecture from day one — not bolted on later.</div>
+        <div class="wc-d">Encrypted pipelines, audit logging, and data privacy by design. Security is in the architecture from day one - not bolted on later.</div>
       </div>
       <div class="why-card f d2">
         <div class="wc-n">02</div>
@@ -389,7 +397,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
       <div class="why-card f d3">
         <div class="wc-n">03</div>
         <div class="wc-t">White-Glove Onboarding</div>
-        <div class="wc-d">Full training, documentation, and ongoing support until your team owns it. We stay on until you're confident — not until the invoice clears.</div>
+        <div class="wc-d">Full training, documentation, and ongoing support until your team owns it. We stay on until you're confident - not until the invoice clears.</div>
       </div>
       <div class="why-card f d4">
         <div class="wc-n">04</div>
@@ -410,21 +418,21 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
         <div class="proc-num">01</div>
         <div>
           <div class="proc-t">Consult</div>
-          <div class="proc-d">We meet to understand your goals, data, and constraints. No generic pitches — focused discovery only. We come with questions, not slide decks.</div>
+          <div class="proc-d">We meet to understand your goals, data, and constraints. No generic pitches - focused discovery only. We come with questions, not slide decks.</div>
         </div>
       </li>
       <li class="proc-item f d2">
         <div class="proc-num">02</div>
         <div>
           <div class="proc-t">Design</div>
-          <div class="proc-d">Architecture, models, APIs, data pipelines, compliance, and infra plan — mapped before we write a single line of code.</div>
+          <div class="proc-d">Architecture, models, APIs, data pipelines, compliance, and infra plan - mapped before we write a single line of code.</div>
         </div>
       </li>
       <li class="proc-item f d3">
         <div class="proc-num">03</div>
         <div>
           <div class="proc-t">Build</div>
-          <div class="proc-d">Rapid development with weekly check-ins. You see real working software at each milestone — not status updates.</div>
+          <div class="proc-d">Rapid development with weekly check-ins. You see real working software at each milestone - not status updates.</div>
         </div>
       </li>
       <li class="proc-item f d4">
@@ -446,7 +454,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
     <div class="contact-intro">
       <span class="sec-tag f">Contact</span>
       <h2 class="f d1">Let's build something great.</h2>
-      <p class="f d2">Tell us about your project. We'll respond within 24 hours with honest advice — no sales pitch.</p>
+      <p class="f d2">Tell us about your project. We'll respond within 24 hours with honest advice - no sales pitch.</p>
     </div>
     <div class="form-wrap f d2">
       <form id="cform" novalidate>
@@ -515,7 +523,7 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.
 const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.f').forEach(el=>io.observe(el));
 
-// form — posts to Formspree → hina@diracailab.com
+// form - posts to Formspree → hina@diracailab.com
 document.getElementById('cform').addEventListener('submit', async e => {
   e.preventDefault();
   const f = e.target;
