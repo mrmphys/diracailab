@@ -523,6 +523,15 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.
 const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.f').forEach(el=>io.observe(el));
 
+// cycle active step
+const steps = document.querySelectorAll('.proc-item');
+let cur = 0;
+setInterval(() => {
+  steps[cur].classList.remove('active');
+  cur = (cur + 1) % steps.length;
+  steps[cur].classList.add('active');
+}, 1800);
+
 // form - posts to Formspree → hina@diracailab.com
 document.getElementById('cform').addEventListener('submit', async e => {
   e.preventDefault();
