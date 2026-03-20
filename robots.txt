@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://diracailab.com/sitemap.xml
