@@ -478,14 +478,35 @@ mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.
 const io=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');ob.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.f').forEach(el=>io.observe(el));
 
-// form
-document.getElementById('cform').addEventListener('submit',e=>{
+// form — posts to Formspree → hina@diracailab.com
+document.getElementById('cform').addEventListener('submit', async e => {
   e.preventDefault();
-  const f=e.target;
-  if(!f.name.value.trim()||!f.email.value.trim()||!f.service.value||!f.message.value.trim()){alert('Please fill in all required fields.');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)){alert('Please enter a valid email.');return;}
-  const b=f.querySelector('.fsub');b.textContent='Sending…';b.disabled=true;
-  setTimeout(()=>{f.style.display='none';document.getElementById('suc').style.display='block';},900);
+  const f = e.target;
+  if(!f.name.value.trim()||!f.email.value.trim()||!f.service.value||!f.message.value.trim()){
+    alert('Please fill in all required fields.'); return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)){
+    alert('Please enter a valid email.'); return;
+  }
+  const b = f.querySelector('.fsub');
+  b.textContent = 'Sending…'; b.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/xpwzbqze', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(f)
+    });
+    if(res.ok) {
+      f.style.display = 'none';
+      document.getElementById('suc').style.display = 'block';
+    } else {
+      b.textContent = 'Send Message →'; b.disabled = false;
+      alert('Something went wrong. Please email us directly at hina@diracailab.com');
+    }
+  } catch(err) {
+    b.textContent = 'Send Message →'; b.disabled = false;
+    alert('Something went wrong. Please email us directly at hina@diracailab.com');
+  }
 });
 </script>
 </body>
