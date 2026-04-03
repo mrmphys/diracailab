@@ -1,1 +1,0 @@
-import"./Nav.astro_astro_type_script_index_0_lang.DSMKBN_V.js";const o=new IntersectionObserver((e,t)=>{e.forEach(r=>{r.isIntersecting&&(r.target.classList.add("v"),t.unobserve(r.target))})},{threshold:.1});document.querySelectorAll(".f").forEach(e=>o.observe(e));
