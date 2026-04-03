@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "node_modules/.bin/astro preview --port $PORT --host 0.0.0.0",
+    "startCommand": "node_modules/.bin/astro preview --port ${PORT:-4321} --host 0.0.0.0",
     "restartPolicyType": "ON_FAILURE"
   }
 }
