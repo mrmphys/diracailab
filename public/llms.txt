@@ -1,0 +1,34 @@
+# Dirac AI Lab
+
+> Production-grade AI systems for healthcare, e-commerce, and enterprise.
+
+Dirac AI Lab designs, builds, and deploys custom AI systems that run in production. We specialize in voice AI agents, LLM integration, recommendation engines, classification models, and MLOps pipelines.
+
+## Services
+
+- **Voice AI Agents** — Custom conversational voice agents for inbound support, scheduling, sales, and healthcare triage. Built to handle real call volume at scale.
+- **OpenClaw Setup & LLM Integration** — Full OpenClaw deployment and LLM integration tailored to your stack. Model selection, tool configuration, and business system connectivity.
+- **Healthcare AI** — Patient scheduling, clinical triage, and workflow automation with a focus on data privacy and security.
+- **Recommendation Systems** — Personalized engines for e-commerce, content platforms, and SaaS using embeddings and real-time inference.
+- **Classification Models** — Custom ML pipelines for fraud detection, churn prediction, document classification, and anomaly detection.
+- **MLOps & Model Lifecycle** — CI/CD for ML, automated retraining, drift detection, model monitoring, and cloud deployment across AWS, GCP, and Azure.
+
+## Why Dirac AI Lab
+
+- Security-first architecture — encrypted pipelines, audit logging, data privacy by design
+- Production-grade only — every system is load-tested and built for real traffic
+- White-glove onboarding — full training, documentation, and support until your team owns it
+- 100% custom — no templates, every system is designed for your specific use case
+
+## Contact
+
+- Website: https://diracailab.com
+- Email: hina@diracailab.com
+- Consultation: https://diracailab.com/#contact
+
+## Blog
+
+Recent articles on AI implementation and best practices:
+- https://diracailab.com/blog/getting-started-with-voice-ai
+- https://diracailab.com/blog/llm-integration-best-practices
+- https://diracailab.com/blog/mlops-for-production
