@@ -1,0 +1,52 @@
+---
+const services = [
+  {
+    num: '01',
+    name: 'Voice AI Agents',
+    desc: 'Custom conversational voice agents for inbound support, scheduling, sales, and healthcare triage. Built to handle real call volume at scale.',
+  },
+  {
+    num: '02',
+    name: 'OpenClaw Setup & LLM Integration',
+    desc: 'Full OpenClaw deployment and LLM integration tailored to your stack. We handle setup, model selection, tool configuration, and connect your business systems so your AI agent is operational from day one.',
+  },
+  {
+    num: '03',
+    name: 'Healthcare AI',
+    desc: 'AI solutions built for healthcare - patient scheduling, clinical triage, and workflow automation with a focus on data privacy and security.',
+  },
+  {
+    num: '04',
+    name: 'Recommendation Systems',
+    desc: 'Personalized engines that drive engagement and revenue. Built for e-commerce, content platforms, and SaaS using embeddings and real-time inference.',
+  },
+  {
+    num: '05',
+    name: 'Classification Models',
+    desc: 'Custom ML pipelines for fraud detection, churn prediction, document classification, and anomaly detection - built for accuracy and production speed.',
+  },
+  {
+    num: '06',
+    name: 'MLOps & Model Lifecycle',
+    desc: 'CI/CD for ML, automated retraining, drift detection, model monitoring, and cloud deployment across AWS, GCP, and Azure.',
+  },
+];
+---
+<section id="services">
+  <div class="container">
+    <span class="sec-tag f">Services</span>
+    <h2 class="f d1">What we build.</h2>
+    <ul class="srv-list">
+      {services.map((svc, i) => (
+        <li class={`srv-item f d${i + 1}`}>
+          <span class="srv-n">{svc.num}</span>
+          <div class="srv-body">
+            <div class="srv-name">{svc.name}</div>
+            <div class="srv-desc">{svc.desc}</div>
+          </div>
+          <span class="srv-arrow">→</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,11 +1,17 @@
 {
   "name": "dirac-ai-lab",
-  "version": "1.0.0",
-  "description": "Dirac AI Lab — AI Built for the Real World",
+  "type": "module",
+  "version": "2.0.0",
   "scripts": {
-    "start": "serve . -p ${PORT:-3000} -s"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "npx serve dist -p ${PORT:-3000} -s"
   },
   "dependencies": {
-    "serve": "^14.2.3"
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "astro": "^4.0.0",
+    "tailwindcss": "^3.4.0"
   }
 }

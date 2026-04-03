@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LLM Integration Best Practices: Shipping AI to Production — Dirac AI Lab</title><meta name="description" content="The real challenges of integrating large language models into production systems — latency, reliability, cost, and the mistakes teams make along the way."><meta name="robots" content="index, follow"><meta name="author" content="Dirac AI Lab"><link rel="canonical" href="https://diracailab.com/blog/llm-integration-best-practices/"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:title" content="LLM Integration Best Practices: Shipping AI to Production — Dirac AI Lab"><meta property="og:description" content="The real challenges of integrating large language models into production systems — latency, reliability, cost, and the mistakes teams make along the way."><meta property="og:url" content="https://diracailab.com/blog/llm-integration-best-practices/"><meta property="og:site_name" content="Dirac AI Lab"><meta property="og:image" content="https://diracailab.com/og-image.png"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="LLM Integration Best Practices: Shipping AI to Production — Dirac AI Lab"><meta name="twitter:description" content="The real challenges of integrating large language models into production systems — latency, reliability, cost, and the mistakes teams make along the way."><meta name="twitter:image" content="https://diracailab.com/og-image.png"><!-- Schema.org Structured Data --><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Dirac AI Lab",
+    "url": "https://diracailab.com",
+    "email": "hina@diracailab.com",
+    "description": "Dirac AI Lab builds production-grade AI systems - voice AI agents, LLM integration, recommendation engines, classification models, and MLOps pipelines.",
+    "serviceType": ["Voice AI Agents", "LLM Integration", "Recommendation Systems", "MLOps", "Machine Learning", "AI Consulting"],
+    "areaServed": "Worldwide"
+  }
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/_slug_.DB895KML.css"><script type="module" src="/_astro/hoisted.M2fTITLf.js"></script></head> <body>  <nav id="nav"> <div class="container ni"> <a href="/" class="logo"><div class="lm">λ</div>Dirac AI Lab</a> <ul class="nl"> <li><a href="/#services">Services</a></li><li><a href="/#why">About</a></li><li><a href="/#process">Process</a></li><li><a href="/blog">Blog</a></li><li><a href="/#contact">Contact</a></li> </ul> <a href="/#contact" class="nb">Get a Consultation</a> <button class="hb" id="hb" aria-label="Menu"> <span></span><span></span><span></span> </button> </div> </nav> <div class="mm" id="mm"> <button class="mc" id="mc">✕ Close</button> <a href="/#services">Services</a><a href="/#why">About</a><a href="/#process">Process</a><a href="/blog">Blog</a><a href="/#contact">Contact</a> </div>  <main style="padding-top: 120px; padding-bottom: 120px;"> <div class="container"> <a href="/blog" style="font-size:.84rem;color:var(--muted);font-weight:500;display:inline-flex;align-items:center;gap:6px;margin-bottom:48px;transition:color .2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">
+← Back to Blog
+</a> <article> <header style="max-width:680px;margin:0 auto 56px;"> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;"> <span style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(0,119,255,.07);padding:4px 10px;border-radius:50px;"> llm </span><span style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(0,119,255,.07);padding:4px 10px;border-radius:50px;"> production </span><span style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(0,119,255,.07);padding:4px 10px;border-radius:50px;"> integration </span><span style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(0,119,255,.07);padding:4px 10px;border-radius:50px;"> architecture </span> </div> <h1 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-.04em;line-height:1.12;margin-bottom:20px;">LLM Integration Best Practices: Shipping AI to Production</h1> <p style="font-size:1rem;color:var(--muted);line-height:1.7;margin-bottom:24px;">The real challenges of integrating large language models into production systems — latency, reliability, cost, and the mistakes teams make along the way.</p> <p style="font-size:.78rem;color:var(--muted);">Published March 17, 2026</p> </header> <div class="prose">  <p>Integrating an LLM into your product sounds straightforward. Call the API, get text back, render it. In a prototype, that’s basically all it is. In production — with real users, real data, SLAs, and cost at scale — it’s a different problem entirely.</p>
+<p>Here’s what actually matters when you’re building LLM-powered features that need to run reliably.</p>
+<h2 id="treat-the-llm-as-an-unreliable-external-service">Treat the LLM as an Unreliable External Service</h2>
+<p>The first mental shift: the LLM is not your database. It doesn’t return the same output for the same input. It has latency variance. It has rate limits. It will sometimes return garbage or refuse to answer. It will change behavior when the underlying model is updated.</p>
+<p>Design accordingly:</p>
+<ul>
+<li><strong>Always have a fallback path.</strong> What happens when the LLM returns nonsense or times out? Define it before you ship.</li>
+<li><strong>Set a timeout.</strong> Don’t let users wait indefinitely. 15–30 seconds is the outer limit for most UX contexts. Fail gracefully.</li>
+<li><strong>Version your prompts.</strong> Treat prompt changes like code changes — they affect behavior. Store them, track them, deploy them intentionally.</li>
+</ul>
+<h2 id="structured-output-is-not-optional">Structured Output Is Not Optional</h2>
+<p>If your system needs to do anything with LLM output — store it, route it, render it in a specific format — you need structured output. Free-form text is fine for chat. It’s not fine for anything downstream.</p>
+<p>Options:</p>
+<ul>
+<li><strong>JSON mode / structured outputs</strong> (OpenAI, Anthropic) — constrain the model to return valid JSON matching a schema</li>
+<li><strong>Function calling / tool use</strong> — the model returns structured parameters for a defined tool</li>
+<li><strong>Pydantic + retry</strong> — parse and validate, retry once on validation failure</li>
+</ul>
+<p>The retry pattern is useful: attempt to parse the output, catch validation errors, and re-prompt with the error and original response. This recovers ~90% of malformed outputs without hitting the user.</p>
+<h2 id="context-window-management">Context Window Management</h2>
+<p>As features get more complex, you’ll want to stuff more context into the prompt — conversation history, user data, retrieved documents. The context window is not infinite, and larger contexts mean higher cost and higher latency.</p>
+<p>A few principles:</p>
+<ul>
+<li><strong>Summarize long conversation history</strong> instead of appending it verbatim. Run a small fast model to compress older turns.</li>
+<li><strong>Retrieve don’t store</strong> — use a vector database to retrieve the top-k relevant chunks rather than including everything.</li>
+<li><strong>Measure your average token count</strong> per request. If it’s growing week over week, you have a leak.</li>
+</ul>
+<h2 id="caching-the-free-performance-win">Caching: The Free Performance Win</h2>
+<p>LLM calls are expensive. Some of them are identical — same prompt, same context, same query. Cache those.</p>
+<p>Semantic caching goes further: if two queries are semantically similar (not just identical strings), return the cached response. Tools like GPTCache or custom embedding-based lookups can reduce API calls by 20–40% in many applications.</p>
+<h2 id="latency-optimization">Latency Optimization</h2>
+<p>Users tolerate latency differently in different contexts. Background processing has a high tolerance. Conversational interfaces have a very low one. Know your target before you optimize.</p>
+<p>Techniques that actually move the needle:</p>
+<ul>
+<li><strong>Streaming</strong> — pipe tokens to the UI as they arrive. This doesn’t reduce total latency but dramatically improves perceived responsiveness.</li>
+<li><strong>Model sizing</strong> — use the smallest model that meets quality requirements. GPT-4o is not always the right answer. For classification, summarization, or extraction tasks, smaller models are often faster, cheaper, and good enough.</li>
+<li><strong>Parallel calls</strong> — if a workflow requires multiple independent LLM calls, fire them in parallel.</li>
+<li><strong>Edge deployment</strong> — for latency-critical paths, run smaller models at the edge (Groq, Fireworks, or self-hosted Ollama).</li>
+</ul>
+<h2 id="prompt-injection-and-security">Prompt Injection and Security</h2>
+<p>If your application accepts user input that gets incorporated into a prompt, you have a prompt injection attack surface. A malicious user can attempt to override system instructions, extract training data, or cause the model to take unintended actions.</p>
+<p>Basic mitigations:</p>
+<ul>
+<li><strong>Separate user input from instructions</strong> — use structured input fields, not open-ended message composition.</li>
+<li><strong>Output validation</strong> — never trust the LLM’s output to be safe for downstream systems without validation.</li>
+<li><strong>Privilege separation</strong> — never give the LLM direct access to sensitive systems or data it doesn’t need.</li>
+</ul>
+<h2 id="observability">Observability</h2>
+<p>You cannot improve what you cannot measure. At minimum, log:</p>
+<ul>
+<li>Every request: prompt, response, model, latency, token count, cost</li>
+<li>Errors and retries</li>
+<li>User feedback signals (thumbs up/down, edits, abandonment)</li>
+</ul>
+<p>Build a dashboard that shows you cost per user, latency percentiles, and error rate over time. Set alerts. Review a random sample of completions weekly — you’ll catch problems before users report them.</p>
+<h2 id="choosing-a-model">Choosing a Model</h2>
+<p>The model landscape changes fast. Don’t over-index on benchmarks. Test on your actual use case with your actual data. The best model for your task is the one that performs best on your eval set, not the one that topped some leaderboard.</p>
+<p>Maintain a model eval script that you can run on any new model release. When a better model ships, you want to know in 30 minutes whether you should switch — not 30 days.</p>
+<p>Building for production is building for reliability. The LLM is the interesting part, but the infrastructure around it is what makes the product work.</p>   </div> </article> <div style="max-width:680px;margin:64px auto 0;padding-top:40px;border-top:1px solid var(--border);"> <a href="/blog" style="font-size:.84rem;color:var(--muted);font-weight:500;transition:color .2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">
+← Back to Blog
+</a> </div> </div> </main> <footer> <div class="container"> <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:32px;"> <div> <div class="fb-logo"><div class="lm">λ</div>Dirac AI Lab</div> <p class="fb-d">Production-grade AI for healthcare, e-commerce, and enterprise.</p> </div> <div class="fsoc"> <a href="#" class="fsl" aria-label="LinkedIn">in</a> <a href="#" class="fsl" aria-label="Twitter">𝕏</a> <a href="#" class="fsl" aria-label="GitHub">⌥</a> </div> </div> <div class="fb"> <p class="fc-copy">© 2026 Dirac AI Lab · diracailab.com · All rights reserved.</p> </div> </div> </footer>  </body></html>

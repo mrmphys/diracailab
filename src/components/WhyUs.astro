@@ -1,0 +1,41 @@
+---
+const cards = [
+  {
+    num: '01',
+    title: 'Security First',
+    desc: 'Encrypted pipelines, audit logging, and data privacy by design. Security is in the architecture from day one - not bolted on later.',
+  },
+  {
+    num: '02',
+    title: 'Production-Grade Only',
+    desc: "Every system is load-tested, monitored, and built to handle real traffic. We don't sell demos. We deploy systems that run for years.",
+  },
+  {
+    num: '03',
+    title: 'White-Glove Onboarding',
+    desc: "Full training, documentation, and ongoing support until your team owns it. We stay on until you're confident - not until the invoice clears.",
+  },
+  {
+    num: '04',
+    title: '100% Custom',
+    desc: 'No templates. Every system is designed for your specific use case, data, stack, and business objectives. Exact fit, every time.',
+  },
+];
+---
+<section id="why">
+  <div class="container">
+    <div class="why-intro">
+      <span class="sec-tag f">Why Us</span>
+      <h2 class="f d1">Built different.<br />Deployed right.</h2>
+    </div>
+    <div class="why-grid">
+      {cards.map((card, i) => (
+        <div class={`why-card f d${i + 1}`}>
+          <div class="wc-n">{card.num}</div>
+          <div class="wc-t">{card.title}</div>
+          <div class="wc-d">{card.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

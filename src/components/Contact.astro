@@ -1,0 +1,99 @@
+---
+---
+<section id="contact">
+  <div class="container">
+    <div class="contact-intro">
+      <span class="sec-tag f">Contact</span>
+      <h2 class="f d1">Let's build something great.</h2>
+      <p class="f d2">Tell us about your project. We'll respond within 24 hours with honest advice - no sales pitch.</p>
+    </div>
+    <div class="form-wrap f d2">
+      <form id="cform" novalidate>
+        <div class="fg-row">
+          <div class="fg">
+            <label for="fn">Name *</label>
+            <input type="text" id="fn" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="fg">
+            <label for="em">Email *</label>
+            <input type="email" id="em" name="email" placeholder="jane@company.com" required />
+          </div>
+        </div>
+        <div class="fg">
+          <label for="co">Company</label>
+          <input type="text" id="co" name="company" placeholder="Acme Corp" />
+        </div>
+        <div class="fg">
+          <label for="sv">Service *</label>
+          <select id="sv" name="service" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Voice AI Agents</option>
+            <option>Claude / LLM Integration</option>
+            <option>Healthcare AI</option>
+            <option>Recommendation Systems</option>
+            <option>Classification Models</option>
+            <option>MLOps &amp; Model Lifecycle</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="msg">Tell us about your project *</label>
+          <textarea id="msg" name="message" placeholder="Describe your use case, current stack, and what you're trying to achieve…" required></textarea>
+        </div>
+        <p class="priv">🔒 Your information is never shared with third parties.</p>
+        <button type="submit" class="fsub">Send Message →</button>
+      </form>
+      <div class="suc" id="suc">
+        <h3>Message sent.</h3>
+        <p>We'll be in touch within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('cform') as HTMLFormElement | null;
+  const sucDiv = document.getElementById('suc') as HTMLElement | null;
+
+  form?.addEventListener('submit', async (e: Event) => {
+    e.preventDefault();
+    const f = e.target as HTMLFormElement;
+    const nameEl = f.querySelector('[name="name"]') as HTMLInputElement;
+    const emailEl = f.querySelector('[name="email"]') as HTMLInputElement;
+    const serviceEl = f.querySelector('[name="service"]') as HTMLSelectElement;
+    const msgEl = f.querySelector('[name="message"]') as HTMLTextAreaElement;
+
+    if (!nameEl.value.trim() || !emailEl.value.trim() || !serviceEl.value || !msgEl.value.trim()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      alert('Please enter a valid email.');
+      return;
+    }
+
+    const btn = f.querySelector('.fsub') as HTMLButtonElement;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://formspree.io/f/mkoqydeb', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(f),
+      });
+      if (res.ok) {
+        f.style.display = 'none';
+        if (sucDiv) sucDiv.style.display = 'block';
+      } else {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us directly at hina@diracailab.com');
+      }
+    } catch {
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at hina@diracailab.com');
+    }
+  });
+</script>

@@ -1,0 +1,47 @@
+---
+const navLinks = [
+  { href: '/#services', label: 'Services' },
+  { href: '/#why', label: 'About' },
+  { href: '/#process', label: 'Process' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+<nav id="nav">
+  <div class="container ni">
+    <a href="/" class="logo"><div class="lm">λ</div>Dirac AI Lab</a>
+    <ul class="nl">
+      {navLinks.map(link => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+    <a href="/#contact" class="nb">Get a Consultation</a>
+    <button class="hb" id="hb" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mm" id="mm">
+  <button class="mc" id="mc">✕ Close</button>
+  {navLinks.map(link => (
+    <a href={link.href}>{link.label}</a>
+  ))}
+</div>
+
+<script>
+  // Nav scroll state
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav')?.classList.toggle('s', scrollY > 24);
+  }, { passive: true });
+
+  // Mobile menu
+  const hb = document.getElementById('hb');
+  const mm = document.getElementById('mm');
+  const mc = document.getElementById('mc');
+  if (hb && mm && mc) {
+    hb.onclick = () => mm.classList.toggle('o');
+    mc.onclick = () => mm.classList.remove('o');
+    mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('o')));
+  }
+</script>
