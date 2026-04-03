@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "npx serve dist -p ${PORT:-3000} -s"
+    "start": "npx serve dist --single false --listen $PORT"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
