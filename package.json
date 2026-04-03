@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "astro preview --port ${PORT:-4321} --host 0.0.0.0"
+    "start": "node start.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
